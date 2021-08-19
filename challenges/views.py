@@ -5,33 +5,27 @@ from django.urls import reverse
 # Create your views here.
 
 monthly_challenges = {
-    "january": "january1",
-    "february": "february1",
-    "march": "march1",
-    "april": "april1",
-    "may": "may1",
-    "june": "june1",
-    "july": "july1",
-    "august": "august1",
-    "september": "september1",
-    "october": "october1",
-    "november": "november1",
-    "december": "december1"
+    "january": "Zero Eating Out.",
+    "february": "Track Your Spending.",
+    "march": "Try a No-Spend Month",
+    "april": "No Retail Shopping.",
+    "may": "Pay In Cash Only.",
+    "june": "Avoid Social Media While Working.",
+    "july": "Meal Prep Your Lunch.",
+    "august": "Make One New Connection a Week.",
+    "september": "Make One New Connection a Week",
+    "october": "Work Breaks into Your Daily Routine",
+    "november": "Read a Chapter of a Book a Day",
+    "december": None
 }
 
 
 def index(request):
-    list_items = ""
     months = list(monthly_challenges.keys())
 
-    for month in months:
-        capitalized_month = month.capitalize()
-        month_path = reverse("monthly-challenge", args=[month])
-        list_items += f"<li><a href=\"{month_path}\">{capitalized_month}</a></li>"
-
-    response_data = f"<ul>{list_items}</ul>"
-
-    return HttpResponse(response_data)
+    return render(request, "challenges/index.html", {
+        "months": months
+    })
 
 
 def monthly_challenge_by_number(request, month):
