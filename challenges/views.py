@@ -38,7 +38,7 @@ def monthly_challenge_by_number(request, month):
     else:
         response_data = render_to_string("404.html")
         return HttpResponseNotFound(response_data)
-        # raise Http404()
+        # raise Http404() # debug must be True
 
 
 def monthly_challenge(request, month):
